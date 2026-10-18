@@ -1,0 +1,16 @@
+<div class="container mt-4">
+  <a routerLink="/add-trip" class="btn btn-success mb-4">
+    Add Trip
+  </a>
+
+  <div class="row">
+    @for (trip of trips; track trip.code) {
+      <div class="col-md-4 mb-4">
+        <app-trip-card
+          [trip]="trip"
+          (deleted)="onTripDeleted($event)"
+        ></app-trip-card>
+      </div>
+    }
+  </div>
+</div>

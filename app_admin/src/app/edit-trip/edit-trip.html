@@ -1,0 +1,91 @@
+<div class="container mt-4">
+  <h2>Edit Trip</h2>
+
+  @if (errorMessage) {
+    <div class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
+  }
+
+  @if (loading) {
+    <p>Loading trip...</p>
+  }
+
+  <form [formGroup]="tripForm" (ngSubmit)="onSubmit()">
+    <fieldset [disabled]="loading || saving">
+      <div class="mb-3">
+        <label for="code" class="form-label">Trip Code</label>
+        <input
+          id="code"
+          class="form-control"
+          formControlName="code"
+          readonly
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="name" class="form-label">Trip Name</label>
+        <input id="name" class="form-control" formControlName="name">
+      </div>
+
+      <div class="mb-3">
+        <label for="length" class="form-label">Length</label>
+        <input id="length" class="form-control" formControlName="length">
+      </div>
+
+      <div class="mb-3">
+        <label for="start" class="form-label">Start Date</label>
+        <input
+          id="start"
+          type="date"
+          class="form-control"
+          formControlName="start"
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="resort" class="form-label">Resort</label>
+        <input id="resort" class="form-control" formControlName="resort">
+      </div>
+
+      <div class="mb-3">
+        <label for="perPerson" class="form-label">Price Per Person</label>
+        <input
+          id="perPerson"
+          class="form-control"
+          formControlName="perPerson"
+          inputmode="decimal"
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="image" class="form-label">Image Filename</label>
+        <input id="image" class="form-control" formControlName="image">
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          id="description"
+          class="form-control"
+          formControlName="description"
+          rows="4"
+        ></textarea>
+      </div>
+
+      <p class="text-muted">
+        All fields are required. Enter a price such as 799.00.
+      </p>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="tripForm.invalid || loading || saving"
+      >
+        {{ saving ? 'Saving...' : 'Update Trip' }}
+      </button>
+    </fieldset>
+
+    <a routerLink="/" class="btn btn-secondary mt-2">Cancel</a>
+  </form>
+</div>

@@ -1,0 +1,37 @@
+<div class="card h-100">
+  <img
+    [src]="'images/' + trip.image"
+    [alt]="trip.name"
+    class="card-img-top"
+  >
+
+  <div class="card-body">
+    <h2 class="card-title h5">{{ trip.name }}</h2>
+    <p class="card-text">{{ trip.resort }}</p>
+    <p class="card-text">{{ trip.length }}</p>
+    <p class="card-text">${{ trip.perPerson }} per person</p>
+    <p class="card-text">{{ trip.description }}</p>
+
+    @if (errorMessage) {
+      <p class="text-danger" role="alert">{{ errorMessage }}</p>
+    }
+
+    <div class="d-flex gap-2 flex-wrap">
+      <a
+        [routerLink]="['/edit-trip', trip.code]"
+        class="btn btn-primary"
+      >
+        Edit Trip
+      </a>
+
+      <button
+        type="button"
+        class="btn btn-danger"
+        [disabled]="deleting"
+        (click)="deleteTrip()"
+      >
+        {{ deleting ? 'Deleting...' : 'Delete Trip' }}
+      </button>
+    </div>
+  </div>
+</div>
